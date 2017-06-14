@@ -14,10 +14,13 @@ public interface NewsMainContract {
 
     interface View extends BaseView {
         void showContent(List<NewsModel.ResultBean> dataList);
-        void error(Throwable throwable);
+        void refreshFaild();
+        void refreshSuccess();
+        void LoadMoreSuccess();
     }
 
     interface Presenter extends BasePresenter<NewsMainContract.View> {
-        void getNews(String type, int start);
+        void onRefresh();
+        void onLoadMore();
     }
 }

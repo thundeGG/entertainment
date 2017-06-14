@@ -5,9 +5,8 @@ package com.thunder.entertainment.common.base;
  */
 
 
-import org.reactivestreams.Subscription;
-
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by cuieney on 2016/8/2.
@@ -24,18 +23,11 @@ public class RxPresenter<T extends BaseView> implements BasePresenter<T> {
         }
     }
 
-    protected void addSubscrebe(Subscription subscription) {
+    protected void addSubscrebe(Disposable disposable) {
         if (mCompositeDisposable == null) {
             mCompositeDisposable = new CompositeDisposable();
         }
-        mCompositeDisposable.add(subscription);
-    }
-
-    protected <U> void addRxBusSubscribe(Class<U> eventType, Action1<U> act) {
-        if (mCompositeDisposable == null) {
-            mCompositeDisposable = new mCompositeDisposable();
-        }
-        mCompositeSubscription.add(RxBus.getDefault().toDefaultObservable(eventType, act));
+        mCompositeDisposable.add(disposable);
     }
 
     @Override

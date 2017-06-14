@@ -2,6 +2,7 @@ package com.thunder.entertainment.common.net;
 
 
 import com.thunder.entertainment.BuildConfig;
+import com.thunder.entertainment.api.GankService;
 import com.thunder.entertainment.app.Constants;
 import com.thunder.entertainment.common.utils.NetworkUtils;
 
@@ -16,6 +17,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by beibeizhu on 16/11/17.
@@ -30,7 +34,7 @@ public class RetrofitHelper {
     //网络请求载体
     private OkHttpClient sOkHttpClient = null;
     //干活集中营接口
-//    private GankApi sGankApi = null;
+    private GankService mGankService = null;
     //缓存最大值
     private final long CACHE_MAX_SIZE = 1024 * 1024 * 50;
     //响应头部的缓存设置
@@ -133,17 +137,17 @@ public class RetrofitHelper {
         }
         return INSTANCE;
     }
-//
-//    public GankApi getGankApi() {
-//        if (sGankApi == null) {
-//            Retrofit retrofit = new Retrofit.Builder()
-//                    .client(sOkHttpClient)
-//                    .baseUrl(GankApi.BASE_URL)
-//                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .build();
-//            sGankApi = retrofit.create(GankApi.class);
-//        }
-//        return sGankApi;
-//    }
+
+    public GankService getGankSercice() {
+        if (mGankService == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .client(sOkHttpClient)
+                    .baseUrl(GankService.BASE_URL)
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            mGankService = retrofit.create(GankService.class);
+        }
+        return mGankService;
+    }
 }
