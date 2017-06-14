@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_news"
+        icon="@drawable/ic_import_contacts"
+        title="Favorites" />
+    <tab
+        id="@+id/tab_image"
+        icon="@drawable/ic_image"
+        title="Nearby" />
+    <tab
+        id="@+id/tab_music"
+        icon="@drawable/ic_ic_audiotrack"
+        title="Friends" />
+    <tab
+        id="@+id/tab_movies"
+        icon="@drawable/ic_ic_live_tv"
+        title="Friends" />
+</tabs>
