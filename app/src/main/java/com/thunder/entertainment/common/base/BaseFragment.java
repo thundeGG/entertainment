@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.trello.rxlifecycle.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -16,9 +17,9 @@ import butterknife.Unbinder;
  * Created by beibeizhu on 17/6/14.
  */
 
-public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements BaseView {
+public abstract class BaseFragment<T extends BasePresenter> extends RxFragment {
 
-    protected P mPresenter;
+    protected T mPresenter;
     protected View mView;
     protected Activity mActivity;
     protected Context mContext;
@@ -26,15 +27,10 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     protected boolean isInit = false;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mActivity = activity;
-    }
-
-    @Override
     public void onAttach(Context context) {
-        super.onAttach(context);
+        mActivity = (Activity) context;
         mContext = context;
+        super.onAttach(context);
     }
 
     @Nullable
@@ -47,8 +43,9 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter.attachView(this);
-        mUnbinder = ButterKnife.bind(view);
+        if (mPresenter != null)
+            mPresenter.attachView(this);
+        mUnbinder = ButterKnife.bind(this,view);
         if (savedInstanceState != null) {
             if (!isHidden()) {
                 isInit = true;

@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.thunder.entertainment.R;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -15,7 +15,7 @@ import butterknife.Unbinder;
  * Created by beibeizhu on 17/6/12.
  */
 
-public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatActivity implements BaseView {
+public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatActivity {
 
     protected P mPresenter;
     protected Unbinder mUnbinder;

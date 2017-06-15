@@ -6,4 +6,7 @@
     <string name="tab_2">图片</string>
     <string name="tab_3">音乐</string>
     <string name="tab_4">视频</string>
+
+    <string name="color_tab_inactive">#747474</string>
+    <string name="color_tab_accent">#F63D2B</string>
 </resources>

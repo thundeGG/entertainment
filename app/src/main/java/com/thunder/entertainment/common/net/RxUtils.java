@@ -1,6 +1,7 @@
 package com.thunder.entertainment.common.net;
 
-import com.zz.treless.model.bean.GankBaesResponse;
+
+import com.thunder.entertainment.model.GankBaesResponse;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -8,7 +9,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-import static com.zz.treless.app.Constants.EXCEPTION_API;
+import static com.thunder.entertainment.app.Constants.EXCEPTION_API;
 
 /**
  * Created by beibeizhu on 16/11/21.

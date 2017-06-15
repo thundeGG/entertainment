@@ -5,9 +5,9 @@ import com.thunder.entertainment.model.GankModel;
 
 import java.util.List;
 
-import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import rx.Observable;
 
 /**
  * Created by beibeizhu on 17/6/14.

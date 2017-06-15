@@ -10,24 +10,22 @@ import java.util.List;
  * Created by beibeizhu on 17/6/14.
  */
 
-public interface NewsMainContract {
+public interface MusicMainContract {
 
-    interface Presenter extends BasePresenter{
-        void onRefresh();
-        void onLoadMore();
-    }
-
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView<MusicMainContract.Presenter> {
         void refreshFaild(String msg);
 
-        void refreshSuccess(List<NewsModel.ResultBean.DataBean> dataList);
+        void refreshSuccess(List<NewsModel.ResultBean> dataList);
 
-        void LoadMoreSuccess(List<NewsModel.ResultBean.DataBean> dataList);
+        void LoadMoreSuccess(List<NewsModel.ResultBean> dataList);
 
         void LoadMoreFaild(String msg);
 
         void notMore();
     }
 
-
+    interface Presenter extends BasePresenter{
+        void onRefresh();
+        void onLoadMore();
+    }
 }

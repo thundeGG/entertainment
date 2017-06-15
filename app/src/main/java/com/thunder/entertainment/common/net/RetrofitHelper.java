@@ -3,8 +3,9 @@ package com.thunder.entertainment.common.net;
 
 import com.thunder.entertainment.BuildConfig;
 import com.thunder.entertainment.api.GankService;
+import com.thunder.entertainment.api.JuheService;
 import com.thunder.entertainment.app.Constants;
-import com.thunder.entertainment.common.utils.NetworkUtils;
+import com.thunder.entertainment.common.utils.SystemUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,6 +36,9 @@ public class RetrofitHelper {
     private OkHttpClient sOkHttpClient = null;
     //干活集中营接口
     private GankService mGankService = null;
+    //聚合新闻接口
+    private JuheService mJuheService = null;
+
     //缓存最大值
     private final long CACHE_MAX_SIZE = 1024 * 1024 * 50;
     //响应头部的缓存设置
@@ -85,7 +89,7 @@ public class RetrofitHelper {
                 public Response intercept(Chain chain) throws IOException {
                     //获取当前request对象
                     Request request = chain.request();
-                    if (!NetworkUtils.isConnected()) {
+                    if (!SystemUtils.isNetworkConnected()) {
                         //没有网络仅使用缓存
                         request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE)
                                 .build();
@@ -99,7 +103,7 @@ public class RetrofitHelper {
                         tryCount++;
                     }
 
-                    if (NetworkUtils.isConnected()) {
+                    if (SystemUtils.isNetworkConnected()) {
                         response.newBuilder()
                                 .header(CACHE_CONTROL, CACHE_HAS_NTE_MAX_AGE + MAX_AGE);
                     } else {
@@ -149,5 +153,18 @@ public class RetrofitHelper {
             mGankService = retrofit.create(GankService.class);
         }
         return mGankService;
+    }
+
+    public JuheService getJuheSercice() {
+        if (mJuheService == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .client(sOkHttpClient)
+                    .baseUrl(JuheService.BASE_URL)
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            mJuheService = retrofit.create(JuheService.class);
+        }
+        return mJuheService;
     }
 }

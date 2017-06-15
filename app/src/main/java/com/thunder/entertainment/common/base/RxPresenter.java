@@ -5,29 +5,29 @@ package com.thunder.entertainment.common.base;
  */
 
 
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 
 /**
- * Created by cuieney on 2016/8/2.
+ * Created by beiebizhu on 2017/6/2.
  * 基于Rx的Presenter封装,控制订阅的生命周期
  */
-public class RxPresenter<T extends BaseView> implements BasePresenter<T> {
+public class RxPresenter<T> implements BasePresenter<T> {
 
     protected T mView;
-    protected CompositeDisposable mCompositeDisposable;
+    protected CompositeSubscription mCompositeSubscription;
 
     protected void unSubscribe() {
-        if (mCompositeDisposable != null) {
-            mCompositeDisposable.dispose();
+        if (mCompositeSubscription != null) {
+            mCompositeSubscription.unsubscribe();
         }
     }
 
-    protected void addSubscrebe(Disposable disposable) {
-        if (mCompositeDisposable == null) {
-            mCompositeDisposable = new CompositeDisposable();
+    protected void addSubscrebe(Subscription subscription) {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
         }
-        mCompositeDisposable.add(disposable);
+        mCompositeSubscription.add(subscription);
     }
 
     @Override

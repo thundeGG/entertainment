@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.thunder.entertainment.common.net.RetrofitHelper;
+import com.thunder.entertainment.common.utils.Utils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +26,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 ;        instance = this;
+        Utils.init(getApplicationContext());
         //初始化RetrofitHelper和OkHttpClient
         RetrofitHelper.getInstance().initOkHttpClient();
     }
