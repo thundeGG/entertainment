@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.thunder.entertainment.R;
+import com.thunder.entertainment.app.App;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
@@ -25,6 +26,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+
+        App.getInstance().registerActivity(this);
+
         mUnbinder = ButterKnife.bind(this);
         if (mPresenter != null)
             mPresenter.attachView(this);
@@ -32,6 +36,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
 
         ImmersionBar.with(this)
                 .statusBarColor(R.color.colorPrimary)
+                .fitsSystemWindows(true)
                 .init();
 
         initView();
@@ -57,5 +62,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
 
         //不调用该方法，如果界面bar发生改变，在不关闭app的情况下，退出此界面再进入将记忆最后一次bar改变的状态
         ImmersionBar.with(this).destroy();
+
+        App.getInstance().unreisterActivity(this);
     }
 }

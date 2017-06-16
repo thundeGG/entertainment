@@ -13,7 +13,7 @@ import java.util.List;
 public interface NewsMainContract {
 
     interface Presenter extends BasePresenter{
-        void onRefresh();
+        void onRefresh(String type);
         void onLoadMore();
     }
 

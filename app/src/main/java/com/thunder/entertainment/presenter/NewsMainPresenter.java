@@ -6,6 +6,8 @@ import com.thunder.entertainment.common.net.RxUtils;
 import com.thunder.entertainment.model.NewsModel;
 import com.thunder.entertainment.presenter.contract.NewsMainContract;
 
+import java.util.List;
+
 import rx.Observable;
 import rx.Subscriber;
 
@@ -16,6 +18,7 @@ import rx.Subscriber;
 public class NewsMainPresenter extends RxPresenter implements NewsMainContract.Presenter {
 
     private NewsMainContract.View view;
+    private String type;
     private int start =1;
 
     public NewsMainPresenter(NewsMainContract.View view) {
@@ -24,9 +27,8 @@ public class NewsMainPresenter extends RxPresenter implements NewsMainContract.P
     }
 
     @Override
-    public void onRefresh() {
-        start =1;
-        Observable<NewsModel> top = RetrofitHelper.getInstance().getJuheSercice().getNews("top", "6f99720638aa78d76e5a79fed4b0cfda", start);
+    public void onRefresh(String type) {
+        Observable<NewsModel> top = RetrofitHelper.getInstance().getJuheSercice().getNews(type, "6f99720638aa78d76e5a79fed4b0cfda", start);
         top.compose(RxUtils.<NewsModel>threadSwitcher())
                 .subscribe(new Subscriber<NewsModel>() {
                     @Override
@@ -49,5 +51,28 @@ public class NewsMainPresenter extends RxPresenter implements NewsMainContract.P
     @Override
     public void onLoadMore() {
         start++;
+        Observable<NewsModel> top = RetrofitHelper.getInstance().getJuheSercice().getNews(type, "6f99720638aa78d76e5a79fed4b0cfda", start);
+        top.compose(RxUtils.<NewsModel>threadSwitcher())
+                .subscribe(new Subscriber<NewsModel>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.LoadMoreFaild(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(NewsModel newsModel) {
+                        List<NewsModel.ResultBean.DataBean> data = newsModel.getResult().getData();
+                        if (data == null || data.size()==0) {
+                            view.LoadMoreSuccess(newsModel.getResult().getData());
+                        }else{
+                            view.notMore();
+                        }
+                    }
+                });
     }
 }

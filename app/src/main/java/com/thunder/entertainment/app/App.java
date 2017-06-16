@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.thunder.entertainment.common.net.RetrofitHelper;
+import com.thunder.entertainment.common.utils.SPUtils;
 import com.thunder.entertainment.common.utils.Utils;
+import com.thunder.entertainment.dao.ChannelManager;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import entertainment.dao.GreenDaoHelper;
 
 /**
  * Created by zzr on 16/11/15.
@@ -16,7 +20,7 @@ import java.util.Set;
 public class App extends Application {
     private static App instance;
     private Set<Activity> allActivity;
-    private final String TAG = "Treless";
+    private final String TAG = "Entertainment";
 
     public static App getInstance() {
         return instance;
@@ -27,8 +31,13 @@ public class App extends Application {
         super.onCreate();
 ;        instance = this;
         Utils.init(getApplicationContext());
+        SPUtils spUtils = new SPUtils(TAG);
         //初始化RetrofitHelper和OkHttpClient
         RetrofitHelper.getInstance().initOkHttpClient();
+        //初始化GreenDao
+        GreenDaoHelper.initDatabase();
+
+        ChannelManager.getInstance().initData();
     }
 
     public void registerActivity(Activity activity) {

@@ -2,7 +2,7 @@ package com.thunder.entertainment;
 
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -12,7 +12,7 @@ import com.thunder.entertainment.ui.fragment.ViewPageInfo;
 import com.thunder.entertainment.ui.fragment.image.ImageFragment;
 import com.thunder.entertainment.ui.fragment.movie.MovieFragment;
 import com.thunder.entertainment.ui.fragment.music.MusicFragment;
-import com.thunder.entertainment.ui.fragment.news.NewsFragment;
+import com.thunder.entertainment.ui.fragment.news.NewsManagerFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,8 @@ public class MainActivity extends BaseActivity {
     ViewPager mViewPager;
 
     private List<ViewPageInfo> fragList;
-    protected FragmentStatePagerAdapter mAdapter;
+    //    protected FragmentStatePagerAdapter mAdapter;
+    protected FragmentPagerAdapter mAdapter;
 
     @Override
     protected void initView() {
@@ -38,7 +39,7 @@ public class MainActivity extends BaseActivity {
     private void initViewPage() {
         if (mAdapter == null){
             fragList = new ArrayList<>();
-            ViewPageInfo newsItem = new ViewPageInfo("news", new NewsFragment());
+            ViewPageInfo newsItem = new ViewPageInfo("news", new NewsManagerFragment());
             ViewPageInfo imageItem = new ViewPageInfo("image", new ImageFragment());
             ViewPageInfo musicItem = new ViewPageInfo("music", new MusicFragment());
             ViewPageInfo movieItem = new ViewPageInfo("movie", new MovieFragment());
@@ -46,8 +47,10 @@ public class MainActivity extends BaseActivity {
             fragList.add(imageItem);
             fragList.add(musicItem);
             fragList.add(movieItem);
-
-            mAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            //mainActivity ViewPage中的Fragment如果有Viewpage  使用FragmentStatePagerAdapter
+            //mainActivity 必须用FragmentPagerAdapter，否则报错
+            //原因暂时不详
+            mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
                 @Override
                 public Fragment getItem(int position) {
                     return fragList.get(position).fragment;
@@ -55,16 +58,28 @@ public class MainActivity extends BaseActivity {
 
                 @Override
                 public int getCount() {
-                    return fragList.size();
+                    return fragList == null ? 0 : fragList.size();
                 }
-
-                @Override
-                public CharSequence getPageTitle(int position) {
-                    return fragList.get(position).tag;
-                }
-
-
             };
+
+//            mAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+//                @Override
+//                public Fragment getItem(int position) {
+//                    return fragList.get(position).fragment;
+//                }
+//
+//                @Override
+//                public int getCount() {
+//                    return fragList.size();
+//                }
+//
+//                @Override
+//                public CharSequence getPageTitle(int position) {
+//                    return fragList.get(position).tag;
+//                }
+//
+//
+//            };
             if (mViewPager !=null) {
                 mViewPager.setAdapter(mAdapter);
             }
@@ -103,7 +118,7 @@ public class MainActivity extends BaseActivity {
         // TitleState.SHOW_WHEN_ACTIVE  选中才显示
         // TitleState.ALWAYS_SHOW       总是显示
         // TitleState.ALWAYS_HIDE       总是隐藏
-        ahBottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
+        ahBottomNavigation.setTitleState(AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE);
 
         // 设置当前选中　
         ahBottomNavigation.setCurrentItem(0);
@@ -124,11 +139,27 @@ public class MainActivity extends BaseActivity {
                 return true;
             }
         });
+
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                ahBottomNavigation.setCurrentItem(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
     protected void initData() {
-
     }
 
 }

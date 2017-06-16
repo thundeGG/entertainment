@@ -1,6 +1,8 @@
 package com.thunder.entertainment.model;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.thunder.entertainment.common.base.BaseData;
+import com.thunder.entertainment.common.utils.StringUtils;
 
 import java.util.List;
 
@@ -79,7 +81,7 @@ public class NewsModel extends BaseData {
             this.data = data;
         }
 
-        public static class DataBean {
+        public static class DataBean implements MultiItemEntity {
             /**
              * uniquekey : e65eadb5f68158857cacd44e8cd6d020
              * title : 十有九准，63年属兔人的后半辈子，准的难以置信！
@@ -91,6 +93,11 @@ public class NewsModel extends BaseData {
              * thumbnail_pic_s02 : http://00.imgmini.eastday.com/mobile/20170614/20170614122514_06f91d1581decfd55c7dfd72089f1f28_1_mwpm_03200403.jpeg
              * thumbnail_pic_s03 : http://00.imgmini.eastday.com/mobile/20170614/20170614122514_06f91d1581decfd55c7dfd72089f1f28_2_mwpm_03200403.jpeg
              */
+
+//            public static final int TEXT = 0;
+            public static final int IMG_ONE = 1;
+            public static final int IMG_TWO = 2;
+            public static final int IMG_THREE = 3;
 
             private String uniquekey;
             private String title;
@@ -172,6 +179,17 @@ public class NewsModel extends BaseData {
 
             public void setThumbnail_pic_s03(String thumbnail_pic_s03) {
                 this.thumbnail_pic_s03 = thumbnail_pic_s03;
+            }
+
+            @Override
+            public int getItemType() {
+                if (!StringUtils.isEmpty(thumbnail_pic_s03)) {
+                    return IMG_THREE;
+                } else if (!StringUtils.isEmpty(thumbnail_pic_s02)) {
+                    return IMG_TWO;
+                } else {
+                    return IMG_ONE;
+                }
             }
         }
     }

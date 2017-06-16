@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF0000</color>
+    <color name="colorPrimary">#E4002C</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="color_tab_normal">#666666</color>
-    <color name="color_tab_selected">#FF0000</color>
+    <color name="color_tab_selected">#E4002C</color>
+
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
+    <color name="color_font">#666666</color>
 </resources>
