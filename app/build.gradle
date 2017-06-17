@@ -89,4 +89,6 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2'
     //BaseRecyclerViewAdapterHelper
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.19'
+    //webview
+    compile 'com.just.agentweb:agentweb:1.2.2'
 }

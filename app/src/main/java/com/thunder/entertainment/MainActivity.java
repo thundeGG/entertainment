@@ -149,6 +149,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 ahBottomNavigation.setCurrentItem(position);
+                ahBottomNavigation.restoreBottomNavigation(true);
             }
 
             @Override

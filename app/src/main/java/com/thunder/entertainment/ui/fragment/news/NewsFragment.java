@@ -1,9 +1,12 @@
 package com.thunder.entertainment.ui.fragment.news;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.thunder.entertainment.R;
@@ -11,6 +14,7 @@ import com.thunder.entertainment.common.base.BaseFragment;
 import com.thunder.entertainment.model.NewsModel;
 import com.thunder.entertainment.presenter.NewsMainPresenter;
 import com.thunder.entertainment.presenter.contract.NewsMainContract;
+import com.thunder.entertainment.ui.activity.news.NewsWebViewActivity;
 import com.thunder.entertainment.ui.adapter.NewsAdapter;
 
 import java.util.ArrayList;
@@ -33,6 +37,8 @@ public class NewsFragment extends BaseFragment<NewsMainContract.Presenter> imple
         return fragment;
     }
 
+    @BindView(R.id.ll_parent)
+    LinearLayout mLinearLayout;
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.recyclerView)
@@ -56,20 +62,10 @@ public class NewsFragment extends BaseFragment<NewsMainContract.Presenter> imple
         newsList = new ArrayList<>();
         mAdapter = new NewsAdapter(newsList);
         mSwipeRefreshLayout.setProgressViewOffset(false,100,200);
-//        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.getEssayData(0));
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layout = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layout);
-//        mRecyclerView.addOnScrollListener(new EndLessOnScrollListener(layout,1) {
-//            @Override
-//            public void onLoadMore() {
-//                mPresenter.getEssayData(pager);
-//            }
-//        });
         mRecyclerView.setAdapter(mAdapter);
-//        adapter.setOnItemClickListener((position, view, vh) -> {
-//            startChildFragment(mEssayList.get(position),vh);
-//        });
     }
 
     @Override
@@ -85,6 +81,16 @@ public class NewsFragment extends BaseFragment<NewsMainContract.Presenter> imple
             @Override
             public void onLoadMoreRequested() {
                 mPresenter.onLoadMore();
+            }
+        });
+
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                NewsModel.ResultBean.DataBean item = mAdapter.getItem(position);
+                Intent intent = new Intent(getActivity(), NewsWebViewActivity.class);
+                intent.putExtra("url", item.getUrl());
+                startActivity(intent);
             }
         });
     }
@@ -126,4 +132,5 @@ public class NewsFragment extends BaseFragment<NewsMainContract.Presenter> imple
     public void setPresenter(NewsMainContract.Presenter presenter) {
         mPresenter = presenter;
     }
+
 }
