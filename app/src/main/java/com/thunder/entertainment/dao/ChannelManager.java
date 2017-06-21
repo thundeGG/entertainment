@@ -1,5 +1,7 @@
 package com.thunder.entertainment.dao;
 
+import com.thunder.entertainment.app.Constants;
+
 import java.util.List;
 
 import entertainment.dao.ChannelModelDao;
@@ -41,69 +43,69 @@ public class ChannelManager {
             topChannel.setId(null);
             topChannel.setName("头条");
             topChannel.setValue("top");
-            topChannel.setState(1);
+            topChannel.setState(Constants.CHANNEL_STATE_MY);
 
 
             ChannelModel shehuiChannel = new ChannelModel();
             shehuiChannel.setId(null);
             shehuiChannel.setName("社会");
             shehuiChannel.setValue("shehui");
-            shehuiChannel.setState(1);
+            shehuiChannel.setState(Constants.CHANNEL_STATE_MY);
 
             ChannelModel guoneiChannel = new ChannelModel();
             guoneiChannel.setId(null);
             guoneiChannel.setName("国内");
             guoneiChannel.setValue("guonei");
-            guoneiChannel.setState(1);
+            guoneiChannel.setState(Constants.CHANNEL_STATE_MY);
 
 
             ChannelModel guojiChannel = new ChannelModel();
             guojiChannel.setId(null);
             guojiChannel.setName("国际");
             guojiChannel.setValue("guoji");
-            guojiChannel.setState(0);
+            guojiChannel.setState(Constants.CHANNEL_STATE_MY);
 
 
             ChannelModel yuleChannel = new ChannelModel();
             yuleChannel.setId(null);
             yuleChannel.setName("娱乐");
             yuleChannel.setValue("yule");
-            yuleChannel.setState(0);
+            yuleChannel.setState(Constants.CHANNEL_STATE_NO);
 
 
             ChannelModel tiyuChannel = new ChannelModel();
             tiyuChannel.setId(null);
             tiyuChannel.setName("体育");
             tiyuChannel.setValue("tiyu");
-            tiyuChannel.setState(0);
+            tiyuChannel.setState(Constants.CHANNEL_STATE_NO);
 
 
             ChannelModel junshiChannel = new ChannelModel();
             junshiChannel.setId(null);
             junshiChannel.setName("军事");
             junshiChannel.setValue("junshi");
-            junshiChannel.setState(0);
+            junshiChannel.setState(Constants.CHANNEL_STATE_NO);
 
 
             ChannelModel kejiChannel = new ChannelModel();
             kejiChannel.setId(null);
             kejiChannel.setName("科技");
             kejiChannel.setValue("keji");
-            kejiChannel.setState(0);
+            kejiChannel.setState(Constants.CHANNEL_STATE_NO);
 
 
             ChannelModel caijingChannel = new ChannelModel();
             caijingChannel.setId(null);
             caijingChannel.setName("财经");
             caijingChannel.setValue("caijing");
-            caijingChannel.setState(0);
+            caijingChannel.setState(Constants.CHANNEL_STATE_NO);
 
 
             ChannelModel shishangChannel = new ChannelModel();
             shishangChannel.setId(null);
             shishangChannel.setName("时尚");
             shishangChannel.setValue("shishang");
-            shishangChannel.setState(0);
+            shishangChannel.setState(Constants.CHANNEL_STATE_NO);
 
             channelModelDao.insert(topChannel);
             channelModelDao.insert(shehuiChannel);
@@ -126,4 +128,7 @@ public class ChannelManager {
         return channelModelDao.queryBuilder().where(ChannelModelDao.Properties.State.eq(0)).list();
     }
 
+    public void updateChannel(ChannelModel channelModel) {
+        channelModelDao.update(channelModel);
+    }
 }

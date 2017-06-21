@@ -115,7 +115,8 @@ public abstract class BaseWebActivity extends BaseActivity {
 
                 break;
             case R.id.iv_finish:
-                showDialog();
+                this.finish();
+//                showDialog();
                 break;
         }
     }

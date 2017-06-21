@@ -44,13 +44,14 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
         initData();
     }
 
-    protected abstract void initView();
-
     protected abstract int getLayoutId();
+
+    protected abstract void initView();
 
     protected abstract void initEvent();
 
     protected abstract void initData();
+
 
     @Override
     protected void onDestroy() {

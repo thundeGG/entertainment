@@ -28,4 +28,10 @@ public class Constants {
 
     public static final String EXCEPTION_API = "服务器请求异常";
 
+    public static final int CHANNEL_STATE_NO = 0;
+    public static final int CHANNEL_STATE_MY = 1;
+
+    public static final String ACTION_CHANNEL_UPDATE = "action_channel_update";
+    public static final String ACTION_CHANNEL_CURRENT = "action_channel_current";
+
 }

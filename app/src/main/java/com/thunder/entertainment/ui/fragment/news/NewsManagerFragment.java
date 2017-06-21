@@ -5,13 +5,21 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.thunder.entertainment.R;
+import com.thunder.entertainment.app.Constants;
 import com.thunder.entertainment.common.base.BaseFragment;
+import com.thunder.entertainment.common.event.MessageEvent;
 import com.thunder.entertainment.dao.ChannelManager;
 import com.thunder.entertainment.dao.ChannelModel;
 import com.thunder.entertainment.ui.fragment.ViewPageInfo;
+import com.thunder.entertainment.ui.pop.ChannelPopupWindow;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +37,31 @@ public class NewsManagerFragment extends BaseFragment {
     @BindView(R.id.viewPager)
     ViewPager mViewPager;
 
+    @BindView(R.id.img_news_search)
+    ImageView img_news_search;
     @BindView(R.id.tab)
     ColorTrackTabLayout mColorTrackTabLayout;
     @BindView(R.id.img_news_channel_add)
     ImageView imgChannelAdd;
+    @BindView(R.id.ll_parent)
+    LinearLayout parent;
 
     private List<ViewPageInfo> fragList;
     protected FragmentStatePagerAdapter mAdapter;
+
+    private ChannelPopupWindow channelPopupWindow;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
 
     @Override
     protected int getLayoutId() {
@@ -45,6 +71,8 @@ public class NewsManagerFragment extends BaseFragment {
     @Override
     protected void initView() {
         initViewPage();
+
+        channelPopupWindow = new ChannelPopupWindow(getActivity());
     }
 
     @Override
@@ -55,6 +83,31 @@ public class NewsManagerFragment extends BaseFragment {
     @Override
     protected void initData() {
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onViewPageUpdate(MessageEvent<List<ChannelModel>> event) {
+        if (Constants.ACTION_CHANNEL_UPDATE.equals(event.getTag())) {
+            fragList = new ArrayList<>();
+            for (ChannelModel channelModel : event.getData()) {
+                ViewPageInfo item = new ViewPageInfo(channelModel.getName(), NewsFragment.newInstance(channelModel.getValue()));
+                fragList.add(item);
+            }
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSetCurrent(MessageEvent<List<ChannelModel>> event) {
+        if (Constants.ACTION_CHANNEL_CURRENT.equals(event.getTag())) {
+            fragList = new ArrayList<>();
+            for (ChannelModel channelModel : event.getData()) {
+                ViewPageInfo item = new ViewPageInfo(channelModel.getName(), NewsFragment.newInstance(channelModel.getValue()));
+                fragList.add(item);
+            }
+            mAdapter.notifyDataSetChanged();
+            mViewPager.setCurrentItem(event.getPosition());
+        }
     }
 
     private void initViewPage() {
@@ -100,9 +153,16 @@ public class NewsManagerFragment extends BaseFragment {
     }
 
 
-    @OnClick(R.id.img_news_channel_add)
+    @OnClick({R.id.img_news_channel_add,R.id.img_news_search})
     public void addChannel(View view){
-        Toast.makeText(getActivity(),"点击了",Toast.LENGTH_SHORT).show();
+        switch (view.getId()) {
+            case R.id.img_news_search:
+                Toast.makeText(getContext(), "别点了，没接口", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.img_news_channel_add:
+                channelPopupWindow.showContent(parent);
+                break;
+        }
     }
 
 }

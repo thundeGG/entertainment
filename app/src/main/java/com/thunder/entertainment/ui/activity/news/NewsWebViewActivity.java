@@ -19,4 +19,5 @@ public class NewsWebViewActivity extends BaseWebActivity {
         url = getIntent().getStringExtra("url");
         return url;
     }
+
 }

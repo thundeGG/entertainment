@@ -97,4 +97,5 @@ public abstract class BaseFragment<T extends BasePresenter> extends RxFragment {
     protected abstract void initEvent();
 
     protected abstract void initData();
+
 }
