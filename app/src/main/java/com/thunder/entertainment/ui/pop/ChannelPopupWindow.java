@@ -108,6 +108,16 @@ public class ChannelPopupWindow extends PopupWindow implements View.OnClickListe
                 myChannelAdapter.addData(item);
             }
         });
+
+        this.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if (myChannelAdapter.isUpdate()) {
+                    myChannelAdapter.setUpdateState(false);
+                    tv_update.setText("编辑");
+                }
+            }
+        });
     }
 
     private void initView() {
