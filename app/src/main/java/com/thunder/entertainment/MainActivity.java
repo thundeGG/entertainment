@@ -10,7 +10,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.thunder.entertainment.common.base.BaseActivity;
 import com.thunder.entertainment.ui.fragment.ViewPageInfo;
 import com.thunder.entertainment.ui.fragment.image.ImageFragment;
-import com.thunder.entertainment.ui.fragment.movie.MovieFragment;
+import com.thunder.entertainment.ui.fragment.video.VideoFragment;
 import com.thunder.entertainment.ui.fragment.music.MusicFragment;
 import com.thunder.entertainment.ui.fragment.news.NewsManagerFragment;
 
@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
             ViewPageInfo newsItem = new ViewPageInfo("news", new NewsManagerFragment());
             ViewPageInfo imageItem = new ViewPageInfo("image", new ImageFragment());
             ViewPageInfo musicItem = new ViewPageInfo("music", new MusicFragment());
-            ViewPageInfo movieItem = new ViewPageInfo("movie", new MovieFragment());
+            ViewPageInfo movieItem = new ViewPageInfo("movie", new VideoFragment());
             fragList.add(newsItem);
             fragList.add(imageItem);
             fragList.add(musicItem);

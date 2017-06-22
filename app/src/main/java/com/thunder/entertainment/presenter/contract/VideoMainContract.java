@@ -10,9 +10,9 @@ import java.util.List;
  * Created by beibeizhu on 17/6/14.
  */
 
-public interface MovieMainContract {
+public interface VideoMainContract {
 
-    interface View extends BaseView<MovieMainContract.Presenter> {
+    interface View extends BaseView<VideoMainContract.Presenter> {
         void refreshFaild(String msg);
 
         void refreshSuccess(List<NewsModel.ResultBean> dataList);

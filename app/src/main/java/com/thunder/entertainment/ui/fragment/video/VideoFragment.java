@@ -1,9 +1,10 @@
-package com.thunder.entertainment.ui.fragment.movie;
+package com.thunder.entertainment.ui.fragment.video;
 
 import com.thunder.entertainment.R;
 import com.thunder.entertainment.common.base.BaseFragment;
 import com.thunder.entertainment.model.NewsModel;
-import com.thunder.entertainment.presenter.contract.MovieMainContract;
+import com.thunder.entertainment.presenter.contract.VideoMainContract;
+import com.thunder.entertainment.ui.adapter.VideoAdapter;
 
 import java.util.List;
 
@@ -11,10 +12,13 @@ import java.util.List;
  * Created by beibeizhu on 17/6/15.
  */
 
-public class MovieFragment extends BaseFragment<MovieMainContract.Presenter> implements MovieMainContract.View {
+public class VideoFragment extends BaseFragment<VideoMainContract.Presenter> implements VideoMainContract.View {
+
+    private VideoAdapter mVideoAdapter;
+
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_movie;
+        return R.layout.fragment_video;
     }
 
     @Override
@@ -58,7 +62,7 @@ public class MovieFragment extends BaseFragment<MovieMainContract.Presenter> imp
     }
 
     @Override
-    public void setPresenter(MovieMainContract.Presenter presenter) {
+    public void setPresenter(VideoMainContract.Presenter presenter) {
         mPresenter = presenter;
     }
 }
