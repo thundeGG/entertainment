@@ -4,11 +4,16 @@ package com.thunder.entertainment.model.kaiyan;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+
 /**
  * Created by cuieney on 17/2/26.
  */
 
-public class ItemListBean implements Parcelable {
+public class ItemListBean implements Parcelable, MultiItemEntity {
+    public static final int TYPE_VIDEO = 1;
+    public static final int TYPE_OTHER = 2;
+
     private String type;
     private DataBean data;
 
@@ -58,4 +63,14 @@ public class ItemListBean implements Parcelable {
             return new ItemListBean[size];
         }
     };
+
+    @Override
+    public int getItemType() {
+        if (type.equals("video")) {
+            return TYPE_VIDEO;
+        } else {
+            return TYPE_OTHER;
+        }
+
+    }
 }

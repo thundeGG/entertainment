@@ -78,7 +78,7 @@ public class RetrofitHelper {
                 //HEADER 请求/响应行 + 头 
                 //BODY 请求/响应行 + 头 + 体
                 //NONE 不记录
-                loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+                loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
                 //给OkHttp设置日志拦截
                 builder.addInterceptor(loggingInterceptor);
             }
