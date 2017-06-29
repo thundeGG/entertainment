@@ -1,18 +1,23 @@
 package com.thunder.entertainment;
 
 import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.transition.Explode;
+import android.view.Window;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.thunder.entertainment.common.base.BaseActivity;
 import com.thunder.entertainment.ui.fragment.ViewPageInfo;
 import com.thunder.entertainment.ui.fragment.image.ImageFragment;
-import com.thunder.entertainment.ui.fragment.movie.MovieFragment;
 import com.thunder.entertainment.ui.fragment.music.MusicFragment;
 import com.thunder.entertainment.ui.fragment.news.NewsManagerFragment;
+import com.thunder.entertainment.ui.fragment.video.VideoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +37,17 @@ MainActivity extends BaseActivity {
     protected FragmentPagerAdapter mAdapter;
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        // 设置一个exit transition
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+            getWindow().setEnterTransition(new Explode());
+            getWindow().setExitTransition(new Explode());
+        }
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     protected void initView() {
         initBottomNavigation();
         initViewPage();
@@ -43,7 +59,7 @@ MainActivity extends BaseActivity {
             ViewPageInfo newsItem = new ViewPageInfo("news", new NewsManagerFragment());
             ViewPageInfo imageItem = new ViewPageInfo("image", new ImageFragment());
             ViewPageInfo musicItem = new ViewPageInfo("music", new MusicFragment());
-            ViewPageInfo movieItem = new ViewPageInfo("movie", new MovieFragment());
+            ViewPageInfo movieItem = new ViewPageInfo("movie", new VideoFragment());
             fragList.add(newsItem);
             fragList.add(imageItem);
             fragList.add(musicItem);
@@ -63,24 +79,6 @@ MainActivity extends BaseActivity {
                 }
             };
 
-//            mAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
-//                @Override
-//                public Fragment getItem(int position) {
-//                    return fragList.get(position).fragment;
-//                }
-//
-//                @Override
-//                public int getCount() {
-//                    return fragList.size();
-//                }
-//
-//                @Override
-//                public CharSequence getPageTitle(int position) {
-//                    return fragList.get(position).tag;
-//                }
-//
-//
-//            };
             if (mViewPager !=null) {
                 mViewPager.setAdapter(mAdapter);
             }
@@ -90,6 +88,7 @@ MainActivity extends BaseActivity {
                 mViewPager.setAdapter(mAdapter);
             }
         }
+        mViewPager.setOffscreenPageLimit(4);
     }
 
     public void initBottomNavigation() {
@@ -162,5 +161,14 @@ MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mViewPager.getCurrentItem()==3) {
+            ((VideoFragment)(fragList.get(3).fragment)).onBackPressed();
+            return;
+        }
+        finish();
     }
 }

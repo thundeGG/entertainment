@@ -99,5 +99,6 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     //屏幕适配
     compile 'com.zhy:autolayout:1.4.3'
-
+    //视频播放
+    compile 'com.shuyu:GSYVideoPlayer:1.6.7'
 }

@@ -10,6 +10,7 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 
 /**
  * Created by beibeizhu on 17/6/14.
@@ -28,8 +29,9 @@ public class NewsMainPresenter extends RxPresenter implements NewsMainContract.P
 
     @Override
     public void onRefresh(String type) {
-        Observable<NewsModel> top = RetrofitHelper.getInstance().getJuheSercice().getNews(type, "6f99720638aa78d76e5a79fed4b0cfda", start);
-        top.compose(RxUtils.<NewsModel>threadSwitcher())
+        start =1;
+        Observable<NewsModel> news = RetrofitHelper.getInstance().getJuheSercice().getNews(type, "6f99720638aa78d76e5a79fed4b0cfda", start);
+        Subscription rxSubscription = news.compose(RxUtils.<NewsModel>threadSwitcher())
                 .subscribe(new Subscriber<NewsModel>() {
                     @Override
                     public void onCompleted() {
@@ -46,13 +48,14 @@ public class NewsMainPresenter extends RxPresenter implements NewsMainContract.P
                         view.refreshSuccess(newsModel.getResult().getData());
                     }
                 });
+        addSubscrebe(rxSubscription);
     }
 
     @Override
     public void onLoadMore() {
         start++;
-        Observable<NewsModel> top = RetrofitHelper.getInstance().getJuheSercice().getNews(type, "6f99720638aa78d76e5a79fed4b0cfda", start);
-        top.compose(RxUtils.<NewsModel>threadSwitcher())
+        Observable<NewsModel> news = RetrofitHelper.getInstance().getJuheSercice().getNews(type, "6f99720638aa78d76e5a79fed4b0cfda", start);
+        Subscription rxSubscription = news.compose(RxUtils.<NewsModel>threadSwitcher())
                 .subscribe(new Subscriber<NewsModel>() {
                     @Override
                     public void onCompleted() {
@@ -74,5 +77,6 @@ public class NewsMainPresenter extends RxPresenter implements NewsMainContract.P
                         }
                     }
                 });
+        addSubscrebe(rxSubscription);
     }
 }

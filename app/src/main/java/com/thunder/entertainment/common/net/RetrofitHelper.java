@@ -4,6 +4,7 @@ package com.thunder.entertainment.common.net;
 import com.thunder.entertainment.BuildConfig;
 import com.thunder.entertainment.api.GankService;
 import com.thunder.entertainment.api.JuheService;
+import com.thunder.entertainment.api.KaiYanService;
 import com.thunder.entertainment.app.Constants;
 import com.thunder.entertainment.common.utils.SystemUtils;
 
@@ -38,6 +39,8 @@ public class RetrofitHelper {
     private GankService mGankService = null;
     //聚合新闻接口
     private JuheService mJuheService = null;
+    //开眼视频接口
+    private KaiYanService mKaiYanService = null;
 
     //缓存最大值
     private final long CACHE_MAX_SIZE = 1024 * 1024 * 50;
@@ -75,7 +78,7 @@ public class RetrofitHelper {
                 //HEADER 请求/响应行 + 头 
                 //BODY 请求/响应行 + 头 + 体
                 //NONE 不记录
-                loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+                loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
                 //给OkHttp设置日志拦截
                 builder.addInterceptor(loggingInterceptor);
             }
@@ -166,5 +169,18 @@ public class RetrofitHelper {
             mJuheService = retrofit.create(JuheService.class);
         }
         return mJuheService;
+    }
+
+    public KaiYanService getKaiYanService(){
+        if (mKaiYanService == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .client(sOkHttpClient)
+                    .baseUrl(KaiYanService.BASE_URL)
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            mKaiYanService = retrofit.create(KaiYanService.class);
+        }
+        return mKaiYanService;
     }
 }
