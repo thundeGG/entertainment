@@ -3,9 +3,11 @@ package com.thunder.entertainment.app;
 import android.app.Activity;
 import android.app.Application;
 
+import com.thunder.entertainment.R;
 import com.thunder.entertainment.common.net.RetrofitHelper;
 import com.thunder.entertainment.common.utils.SPUtils;
 import com.thunder.entertainment.common.utils.Utils;
+import com.thunder.entertainment.common.utils.imageutil.GlideOptions;
 import com.thunder.entertainment.dao.ChannelManager;
 
 import java.util.HashSet;
@@ -29,7 +31,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-;        instance = this;
+        instance = this;
         Utils.init(getApplicationContext());
         SPUtils spUtils = new SPUtils(TAG);
         //初始化RetrofitHelper和OkHttpClient
@@ -38,6 +40,7 @@ public class App extends Application {
         GreenDaoHelper.initDatabase();
 
         ChannelManager.getInstance().initData();
+//        GlideOptions.initDefaultOptions(R.mipmap.ic_launcher, R.mipmap.ic_launcher);
     }
 
     public void registerActivity(Activity activity) {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_image_preview"
+    style="@style/MatchMatch"
+    android:background="@color/black"
+    >
+
+    <com.thunder.entertainment.common.utils.ZoomImageView
+        android:id="@+id/image"
+        style="@style/MatchMatch"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"
+        />
+
+</com.zhy.autolayout.AutoFrameLayout>

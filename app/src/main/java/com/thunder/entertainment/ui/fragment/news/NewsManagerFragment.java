@@ -71,7 +71,6 @@ public class NewsManagerFragment extends BaseFragment {
     @Override
     protected void initView() {
         initViewPage();
-
         channelPopupWindow = new ChannelPopupWindow(getActivity());
     }
 

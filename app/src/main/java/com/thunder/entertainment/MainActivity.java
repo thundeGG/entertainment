@@ -19,7 +19,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class
+MainActivity extends BaseActivity {
 
     @BindView(R.id.bottom_navigation)
      AHBottomNavigation ahBottomNavigation;

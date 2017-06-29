@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.thunder.entertainment.R;
-import com.thunder.entertainment.common.utils.ImageLoader;
+import com.thunder.entertainment.common.utils.imageutil.ImageLoader;
 import com.thunder.entertainment.model.NewsModel;
 
 import java.util.List;

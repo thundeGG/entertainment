@@ -1,5 +1,7 @@
 package com.thunder.entertainment.app;
 
+import com.thunder.entertainment.common.router.Router;
+
 import java.io.File;
 
 /**
@@ -33,5 +35,9 @@ public class Constants {
 
     public static final String ACTION_CHANNEL_UPDATE = "action_channel_update";
     public static final String ACTION_CHANNEL_CURRENT = "action_channel_current";
+
+    // #router
+    public static final int ROUTER_ANIM_ENTER = Router.RES_NONE;
+    public static final int ROUTER_ANIM_EXIT = Router.RES_NONE;
 
 }

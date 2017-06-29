@@ -97,4 +97,7 @@ dependencies {
     compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.0.0'
     //eventbus
     compile 'org.greenrobot:eventbus:3.0.0'
+    //屏幕适配
+    compile 'com.zhy:autolayout:1.4.3'
+
 }

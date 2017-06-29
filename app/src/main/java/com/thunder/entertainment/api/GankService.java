@@ -19,7 +19,6 @@ public interface GankService {
     public final String BASE_URL = "http://gank.io/api/";
 
     /**
-     *
      * 分类数据: http://gank.io/api/data/数据类型/请求个数/第几页
      * 数据类型： 福利 | Android | iOS | 休息视频 | 拓展资源 | 前端 | all
      * 请求个数： 数字，大于0
@@ -27,6 +26,9 @@ public interface GankService {
      */
     @GET("data/{type}/{count}/{page}")
     public Observable<GankBaesResponse<List<GankModel>>> getGankNews(@Path("type") String type, @Path("count") int count, @Path("page") int page);
+
+    @GET("data/{type}/{count}/{page}")
+    public Observable<GankBaesResponse<List<GankModel>>> getGankImage(@Path("type") String type, @Path("count") int count, @Path("page") int page);
 
 
 }

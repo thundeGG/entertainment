@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap.Vertical"
+    >
+
+    <ImageView
+        android:id="@+id/iv_imgs"
+        style="@style/MatchMatch"
+        android:layout_margin="10px"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher"
+
+        />
+
+</com.zhy.autolayout.AutoLinearLayout>

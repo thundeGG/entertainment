@@ -11,4 +11,6 @@
     <color name="color_black">#000000</color>
     <color name="color_font">#666666</color>
     <color name="color_my_channel">#F2F5F4</color>
+    <color name="color_bg_gray">#eeeeee</color>
+
 </resources>
