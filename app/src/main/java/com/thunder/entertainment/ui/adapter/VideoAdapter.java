@@ -66,7 +66,7 @@ public class VideoAdapter extends BaseMultiItemQuickAdapter<ItemListBean, BaseVi
                     }
                 });
                 gsyVideoPlayer.setRotateViewAuto(true);
-                gsyVideoPlayer.setLockLand(false);
+                gsyVideoPlayer.setLockLand(true);
                 gsyVideoPlayer.setPlayTag(TAG);
                 gsyVideoPlayer.setShowFullAnimation(true);
                 //不循环

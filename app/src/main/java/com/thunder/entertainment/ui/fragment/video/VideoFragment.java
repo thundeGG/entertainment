@@ -6,7 +6,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
@@ -81,58 +80,43 @@ public class VideoFragment extends BaseFragment<VideoMainContract.Presenter> imp
             }
         });
 
-        mVideoAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
-            }
-        });
-
-//        mVideoAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+//        mVideoAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 //            @Override
-//            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-//                switch (view.getId()) {
-//                    case R.id.list_item_btn:
-//                        mVideoAdapter.notifyDataSetChanged();
-//                        listVideoUtil.setPlayPositionAndTag(position, mVideoAdapter.TAG);
-//                        final String url = mVideoAdapter.getItem(position).getData().getPlayUrl();
-//                        //listVideoUtil.setCachePath(new File(FileUtils.getPath()));
-//                        listVideoUtil.startPlay(url);
-//                        break;
-//                }
+//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//
 //            }
 //        });
 
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
-            int firstVisibleItem, lastVisibleItem;
-
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
-                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-                //大于0说明有播放
-                if (GSYVideoManager.instance().getPlayPosition() >= 0) {
-                    //当前播放的位置
-                    int position = GSYVideoManager.instance().getPlayPosition();
-                    //对应的播放列表TAG
-                    if (GSYVideoManager.instance().getPlayTag().equals(mVideoAdapter.TAG)
-                            && (position < firstVisibleItem || position > lastVisibleItem)) {
-                        //如果滑出去了上面和下面就是否，和今日头条一样
-                        if (!mFull) {
-                            GSYVideoPlayer.releaseAllVideos();
-                            mVideoAdapter.notifyDataSetChanged();
-                        }
-                    }
-                }
-            }
-        });
+//        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//
+//            int firstVisibleItem, lastVisibleItem;
+//
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//            }
+//
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//                firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition();
+//                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+//                //大于0说明有播放
+//                if (GSYVideoManager.instance().getPlayPosition() >= 0) {
+//                    //当前播放的位置
+//                    int position = GSYVideoManager.instance().getPlayPosition();
+//                    //对应的播放列表TAG
+//                    if (GSYVideoManager.instance().getPlayTag().equals(mVideoAdapter.TAG)
+//                            && (position < firstVisibleItem || position > lastVisibleItem)) {
+//                        //如果滑出去了上面和下面就是否，和今日头条一样
+//                        if (!mFull) {
+//                            GSYVideoPlayer.releaseAllVideos();
+//                            mVideoAdapter.notifyDataSetChanged();
+//                        }
+//                    }
+//                }
+//            }
+//        });
 
     }
 

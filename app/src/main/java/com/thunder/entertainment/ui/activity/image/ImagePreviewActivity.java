@@ -1,20 +1,17 @@
 package com.thunder.entertainment.ui.activity.image;
 
 import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
+import android.support.v7.widget.Toolbar;
 import android.view.Window;
+import android.widget.ImageView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.thunder.entertainment.R;
 import com.thunder.entertainment.common.base.BaseActivity;
 import com.thunder.entertainment.common.utils.ZoomImageView;
 import com.thunder.entertainment.common.utils.imageutil.ImageLoader;
-import com.thunder.entertainment.ui.adapter.ImageAdapter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by zzr on 2017/6/29.
@@ -23,6 +20,12 @@ import butterknife.ButterKnife;
 public class ImagePreviewActivity extends BaseActivity {
     @BindView(R.id.image)
     ZoomImageView mImage;
+
+    @BindView(R.id.img_pic)
+    ImageView img_pic;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     public static final String URL_TAG = "URL_TAG";
     public static final String SCALETYPE_TAG = "SCALETYPE_TAG";
@@ -39,15 +42,13 @@ public class ImagePreviewActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Transition explode = TransitionInflater.from(this).inflateTransition(R.transition.fade);
-            //退出时使用
-            getWindow().setExitTransition(explode);
-            //第一次进入时使用
-            getWindow().setEnterTransition(explode);
-            //再次进入时使用
-            getWindow().setReenterTransition(explode);
-        }
+
+        ImmersionBar.with(this)
+                .titleBar(toolbar, false)
+                .fitsSystemWindows(false)
+                .fullScreen(true)
+                .transparentBar()
+                .init();
     }
 
     @Override
@@ -68,7 +69,8 @@ public class ImagePreviewActivity extends BaseActivity {
         } else {
 //            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
         }
-        ImageLoader.getInstance().loadNet(mImage, url, null);
+//        ImageLoader.getInstance().loadNet(mImage, url, null);
+        ImageLoader.getInstance().loadNet(img_pic, url, null);
 
     }
 

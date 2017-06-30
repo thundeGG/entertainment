@@ -1,7 +1,5 @@
 package com.thunder.entertainment.presenter;
 
-import android.database.Observable;
-
 import com.thunder.entertainment.app.Constants;
 import com.thunder.entertainment.common.base.RxPresenter;
 import com.thunder.entertainment.common.net.RetrofitHelper;
@@ -9,7 +7,6 @@ import com.thunder.entertainment.common.net.RxUtils;
 import com.thunder.entertainment.model.GankBaesResponse;
 import com.thunder.entertainment.model.GankModel;
 import com.thunder.entertainment.presenter.contract.ImageMainContract;
-import com.thunder.entertainment.presenter.contract.NewsMainContract;
 
 import java.util.List;
 
@@ -32,6 +29,7 @@ public class ImageMainPresenter extends RxPresenter implements ImageMainContract
 
     @Override
     public void onRefresh() {
+        page = 1;
         rx.Observable<GankBaesResponse<List<GankModel>>> gankWeal = RetrofitHelper.getInstance().getGankSercice().getGankImage(WEAL, Constants.PAGE_SIZE, page);
         gankWeal.compose(RxUtils.<GankBaesResponse<List<GankModel>>>threadSwitcher())
                 .subscribe(new Subscriber<GankBaesResponse<List<GankModel>>>() {

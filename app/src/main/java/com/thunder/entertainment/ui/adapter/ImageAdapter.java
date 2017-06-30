@@ -14,7 +14,7 @@ import com.thunder.entertainment.model.GankModel;
  * Created by beibeizhu on 17/6/16.
  */
 
-public class ImageAdapter extends BaseQuickAdapter<GankModel, BaseViewHolder> {
+public class   ImageAdapter extends BaseQuickAdapter<GankModel, BaseViewHolder> {
     public ImageAdapter(@LayoutRes int layoutResId) {
         super(layoutResId);
     }

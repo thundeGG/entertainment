@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_image_preview"
     style="@style/MatchMatch"
     android:background="@color/black"
     >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:title="全屏图片"
+        android:visibility="gone"
+        app:titleTextColor="@android:color/white" />
 
     <com.thunder.entertainment.common.utils.ZoomImageView
         android:id="@+id/image"
@@ -13,5 +21,12 @@
         android:layout_gravity="center"
         android:scaleType="fitXY"
         />
+
+    <ImageView
+        android:id="@+id/img_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop" />
 
 </com.zhy.autolayout.AutoFrameLayout>
