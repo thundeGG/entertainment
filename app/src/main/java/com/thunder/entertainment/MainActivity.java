@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 public class
 MainActivity extends BaseActivity {
@@ -163,12 +164,19 @@ MainActivity extends BaseActivity {
     protected void initData() {
     }
 
+
     @Override
     public void onBackPressed() {
-        if (mViewPager.getCurrentItem()==3) {
-            ((VideoFragment)(fragList.get(3).fragment)).onBackPressed();
+        if (JCVideoPlayer.backPress()) {
             return;
         }
-        finish();
+        super.onBackPressed();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JCVideoPlayer.releaseAllVideos();
+    }
+
 }

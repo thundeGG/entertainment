@@ -10,7 +10,7 @@
         android:layout_margin="10px"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher"
-        android:transitionName="meinv"
+        android:transitionName="@string/str_gank_transition"
         />
 
 </com.zhy.autolayout.AutoLinearLayout>

@@ -9,4 +9,6 @@
 
     <string name="color_tab_inactive">#747474</string>
     <string name="color_tab_accent">#F63D2B</string>
+    <string name="str_gank_transition">meinv</string>
+    <string name="str_video_transition">video</string>
 </resources>

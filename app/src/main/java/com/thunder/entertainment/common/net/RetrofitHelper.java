@@ -83,7 +83,7 @@ public class RetrofitHelper {
                 builder.addInterceptor(loggingInterceptor);
             }
             //网络请求缓存路径
-            File cacheFile = new File(Constants.PATH_NET_CACHE);
+            File  cacheFile = new File(Constants.PATH_NET_CACHE);
             //缓存
             final Cache cache = new Cache(cacheFile, CACHE_MAX_SIZE);
             //拦截器
