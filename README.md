@@ -12,6 +12,11 @@ vv# entertainment 一个采用了MVP＋Rxjava＋Retrofit的仿今日头条项目
 ![image](https://github.com/7hundeR/entertainment/blob/master/screens/newsdetail.jpg)
 ![image](https://github.com/7hundeR/entertainment/blob/master/screens/mychannel.jpg)
 ![image](https://github.com/7hundeR/entertainment/blob/master/screens/updatechannel.jpg)
+![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E5%9B%BE%E7%89%87%E5%88%97%E8%A1%A8.jpg)
+![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E5%9B%BE%E7%89%87%E8%AF%A6%E6%83%85.jpg)
+![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E8%A7%86%E9%A2%91%E5%88%97%E8%A1%A8.jpg)
+![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E8%A7%86%E9%A2%91%E8%AF%A6%E6%83%85.jpg)
+![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E5%85%A8%E9%83%A8%E8%AF%84%E8%AE%BA.jpg)
 
 ### 下载体验
 [点我下载](https://fir.im/todayTop)
