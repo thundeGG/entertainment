@@ -6,11 +6,13 @@
 
     <ImageView
         android:id="@+id/iv_imgs"
-        style="@style/MatchMatch"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_margin="10px"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher"
         android:transitionName="meinv"
         />
+
 
 </com.zhy.autolayout.AutoLinearLayout>

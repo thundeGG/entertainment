@@ -1,6 +1,7 @@
 package com.thunder.entertainment.ui.adapter;
 
 import android.content.pm.ActivityInfo;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -34,7 +35,10 @@ public class JieCaoVideoAdapter extends BaseMultiItemQuickAdapter<ItemListBean, 
             case ItemListBean.TYPE_VIDEO:
 
                 String url = item.getData().getPlayUrl();
+                Log.i(TAG, "convert: "+url);
                 String title = item.getData().getTitle();
+                long date = item.getData().getDuration();
+                Log.i(TAG, "convert: "+date);
                 JCVideoPlayerStandard jcVideoPlayerStandard = helper.getView(R.id.videoplayer);
                 jcVideoPlayerStandard.setUp(url, JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, title);
                 jcVideoPlayerStandard.ACTION_BAR_EXIST = false;

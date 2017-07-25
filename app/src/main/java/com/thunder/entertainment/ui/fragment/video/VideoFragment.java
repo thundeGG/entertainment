@@ -46,7 +46,6 @@ public class VideoFragment extends BaseFragment<VideoMainContract.Presenter> imp
     @Override
     protected void initView() {
 
-
         dataList = new ArrayList<>();
 
         mPresenter = new VideoMainPresenter(this);
@@ -144,4 +143,5 @@ public class VideoFragment extends BaseFragment<VideoMainContract.Presenter> imp
         ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
 
     }
+
 }

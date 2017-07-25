@@ -1,4 +1,4 @@
-package com.thunder.entertainment.dao;
+package com.thunder.entertainment.dao.table;
 
 import android.os.Parcel;
 import android.os.Parcelable;

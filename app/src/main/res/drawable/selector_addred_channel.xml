@@ -2,6 +2,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:drawable="@drawable/addred_channel_titlbar_pressed" android:state_pressed="true" />
-    <item android:drawable="@drawable/addred_channel_titlbar_normal" />
+    <item android:drawable="@drawable/add_channel" />
 
 </selector>

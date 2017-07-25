@@ -48,6 +48,14 @@ public class ImageLoader {
                 .into(imageView);
     }
 
+    public void displayImageNormal(Context context, String url, int placeHolder, int error, ImageView imageView) {
+        Glide.with(context)
+                .load(url)
+                .placeholder(placeHolder)
+                .error(error)
+                .into(imageView);
+    }
+
     /**
      * 网络获取图片
      *
@@ -136,12 +144,8 @@ public class ImageLoader {
         }
 
         request.diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .
-
-                        crossFade()
-                .
-
-                        into(target);
+                .crossFade()
+                .into(target);
 
     }
 

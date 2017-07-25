@@ -2,13 +2,17 @@ package com.thunder.entertainment.app;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.widget.ImageView;
 
-import com.thunder.entertainment.R;
+import com.lzy.ninegrid.NineGridView;
 import com.thunder.entertainment.common.net.RetrofitHelper;
 import com.thunder.entertainment.common.utils.SPUtils;
 import com.thunder.entertainment.common.utils.Utils;
-import com.thunder.entertainment.common.utils.imageutil.GlideOptions;
+import com.thunder.entertainment.common.utils.imageutil.ImageLoader;
 import com.thunder.entertainment.dao.ChannelManager;
+import com.thunder.entertainment.dao.ShapeManager;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -40,7 +44,11 @@ public class App extends Application {
         GreenDaoHelper.initDatabase();
 
         ChannelManager.getInstance().initData();
+        ShapeManager.getInstance().initData();
 //        GlideOptions.initDefaultOptions(R.mipmap.ic_launcher, R.mipmap.ic_launcher);
+
+        NineGridView.setImageLoader(new GlideImageLoader());
+
     }
 
     public void registerActivity(Activity activity) {
@@ -69,4 +77,21 @@ public class App extends Application {
         }
 
     }
+
+    /**
+     * Glide 加载
+     */
+    private class GlideImageLoader implements NineGridView.ImageLoader {
+
+        @Override
+        public void onDisplayImage(Context context, ImageView imageView, String url) {
+            ImageLoader.getInstance().displayImage(context, url, imageView);
+        }
+
+        @Override
+        public Bitmap getCacheImage(String url) {
+            return null;
+        }
+    }
+
 }

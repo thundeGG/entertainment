@@ -3,6 +3,7 @@ package com.thunder.entertainment.common.base;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.thunder.entertainment.R;
@@ -65,5 +66,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends RxAppCompatA
         ImmersionBar.with(this).destroy();
 
         App.getInstance().unreisterActivity(this);
+    }
+
+    public void toastStr(String msg){
+        Toast toast = Toast.makeText(mContext,msg,Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

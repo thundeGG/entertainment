@@ -18,14 +18,20 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.SpalshActivity"
             android:configChanges="orientation|screenSize"
+            android:theme="@style/ThemeSplash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
@@ -42,12 +48,27 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.activity.weitop.ShapeActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="design_width"
             android:value="720" />
         <meta-data
             android:name="design_height"
             android:value="1280" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.thunder.entertainment.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths_public"></meta-data>
+        </provider>
     </application>
 
 </manifest>

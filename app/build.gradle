@@ -101,4 +101,8 @@ dependencies {
     compile 'com.zhy:autolayout:1.4.3'
     //视频播放
     compile 'fm.jiecao:jiecaovideoplayer:5.5.4'
+    //图片视频选择
+    compile 'com.zhihu.android:matisse:0.5.0-alpha4'
+    //九宫格
+    compile 'com.lzy.widget:ninegridview:0.2.0'
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#E4002C</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#E4002C</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="color_tab_normal">#666666</color>
@@ -13,5 +13,7 @@
     <color name="color_my_channel">#F2F5F4</color>
     <color name="color_bg_gray">#eeeeee</color>
     <color name="color_video_comment_name">#355B7E</color>
+    <color name="color_bg">#F6F5F4</color>
+    <color name="color_shape_image_bg">#60000000</color>
 
 </resources>

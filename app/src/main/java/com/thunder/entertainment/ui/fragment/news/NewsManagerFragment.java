@@ -1,7 +1,5 @@
 package com.thunder.entertainment.ui.fragment.news;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,7 +11,8 @@ import com.thunder.entertainment.app.Constants;
 import com.thunder.entertainment.common.base.BaseFragment;
 import com.thunder.entertainment.common.event.MessageEvent;
 import com.thunder.entertainment.dao.ChannelManager;
-import com.thunder.entertainment.dao.ChannelModel;
+import com.thunder.entertainment.dao.table.ChannelModel;
+import com.thunder.entertainment.ui.adapter.MainFragmentAdapter;
 import com.thunder.entertainment.ui.fragment.ViewPageInfo;
 import com.thunder.entertainment.ui.pop.ChannelPopupWindow;
 
@@ -46,8 +45,7 @@ public class NewsManagerFragment extends BaseFragment {
     @BindView(R.id.ll_parent)
     LinearLayout parent;
 
-    private List<ViewPageInfo> fragList;
-    protected FragmentStatePagerAdapter mAdapter;
+    protected MainFragmentAdapter mAdapter;
 
     private ChannelPopupWindow channelPopupWindow;
 
@@ -87,57 +85,38 @@ public class NewsManagerFragment extends BaseFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onViewPageUpdate(MessageEvent<List<ChannelModel>> event) {
         if (Constants.ACTION_CHANNEL_UPDATE.equals(event.getTag())) {
-            fragList = new ArrayList<>();
+            List<ViewPageInfo> fragList = new ArrayList<>();
             for (ChannelModel channelModel : event.getData()) {
                 ViewPageInfo item = new ViewPageInfo(channelModel.getName(), NewsFragment.newInstance(channelModel.getValue()));
                 fragList.add(item);
             }
-            mAdapter.notifyDataSetChanged();
+            mAdapter.setUpdate(fragList);
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSetCurrent(MessageEvent<List<ChannelModel>> event) {
         if (Constants.ACTION_CHANNEL_CURRENT.equals(event.getTag())) {
-            fragList = new ArrayList<>();
+            List<ViewPageInfo> fragList = new ArrayList<>();
             for (ChannelModel channelModel : event.getData()) {
                 ViewPageInfo item = new ViewPageInfo(channelModel.getName(), NewsFragment.newInstance(channelModel.getValue()));
                 fragList.add(item);
             }
-            mAdapter.notifyDataSetChanged();
+            mAdapter.setUpdate(fragList);
             mViewPager.setCurrentItem(event.getPosition());
         }
     }
 
     private void initViewPage() {
         if (mAdapter == null) {
-            fragList = new ArrayList<>();
+            List<ViewPageInfo> fragList = new ArrayList<>();
             List<ChannelModel> channelModelList = ChannelManager.getInstance().getChoiseChannel();
 
             for (ChannelModel channelModel : channelModelList) {
                 ViewPageInfo item = new ViewPageInfo(channelModel.getName(), NewsFragment.newInstance(channelModel.getValue()));
                 fragList.add(item);
             }
-
-
-            mAdapter = new FragmentStatePagerAdapter(getChildFragmentManager()) {
-                @Override
-                public Fragment getItem(int position) {
-                    return fragList.get(position).fragment;
-                }
-
-                @Override
-                public int getCount() {
-                    return fragList.size();
-                }
-
-                @Override
-                public CharSequence getPageTitle(int position) {
-                    return fragList.get(position).tag;
-                }
-
-
-            };
+            mAdapter = new MainFragmentAdapter(getChildFragmentManager(), fragList);
             if (mViewPager != null) {
                 mViewPager.setAdapter(mAdapter);
             }
@@ -149,6 +128,7 @@ public class NewsManagerFragment extends BaseFragment {
         }
 
         mColorTrackTabLayout.setupWithViewPager(mViewPager);
+        mColorTrackTabLayout.setSelectedTabIndicatorHeight(0);
     }
 
 

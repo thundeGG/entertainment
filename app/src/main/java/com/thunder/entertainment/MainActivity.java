@@ -1,5 +1,6 @@
 package com.thunder.entertainment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,9 +16,9 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.thunder.entertainment.common.base.BaseActivity;
 import com.thunder.entertainment.ui.fragment.ViewPageInfo;
 import com.thunder.entertainment.ui.fragment.image.ImageFragment;
-import com.thunder.entertainment.ui.fragment.music.MusicFragment;
 import com.thunder.entertainment.ui.fragment.news.NewsManagerFragment;
 import com.thunder.entertainment.ui.fragment.video.VideoFragment;
+import com.thunder.entertainment.ui.fragment.weitop.WeiTopFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,12 +60,14 @@ MainActivity extends BaseActivity {
             fragList = new ArrayList<>();
             ViewPageInfo newsItem = new ViewPageInfo("news", new NewsManagerFragment());
             ViewPageInfo imageItem = new ViewPageInfo("image", new ImageFragment());
-            ViewPageInfo musicItem = new ViewPageInfo("music", new MusicFragment());
+//            ViewPageInfo musicItem = new ViewPageInfo("music", new MusicFragment());
             ViewPageInfo movieItem = new ViewPageInfo("movie", new VideoFragment());
+            ViewPageInfo weiTop = new ViewPageInfo("weitop", new WeiTopFragment());
             fragList.add(newsItem);
             fragList.add(imageItem);
-            fragList.add(musicItem);
+//            fragList.add(musicItem);
             fragList.add(movieItem);
+            fragList.add(weiTop);
             //mainActivity ViewPage中的Fragment如果有Viewpage  使用FragmentStatePagerAdapter
             //mainActivity 必须用FragmentPagerAdapter，否则报错
             //原因暂时不详
@@ -96,14 +99,16 @@ MainActivity extends BaseActivity {
         // 创建底部导航的每一项
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.tab_1, R.drawable.ic_import_contacts, R.color.color_tab_normal);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.tab_2, R.drawable.ic_image, R.color.color_tab_normal);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.tab_3, R.drawable.ic_audiotrack, R.color.color_tab_normal);
+//        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.tab_3, R.drawable.ic_audiotrack, R.color.color_tab_normal);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.tab_4, R.drawable.ic_live_tv, R.color.color_tab_normal);
+        AHBottomNavigationItem item5 = new AHBottomNavigationItem(R.string.tab_5, R.drawable.tab_micro_selected, R.color.color_tab_normal);
 
         // 添加到导航中
         ahBottomNavigation.addItem(item1);
         ahBottomNavigation.addItem(item2);
-        ahBottomNavigation.addItem(item3);
+//        ahBottomNavigation.addItem(item3);
         ahBottomNavigation.addItem(item4);
+        ahBottomNavigation.addItem(item5);
 
         // 设置背景颜色
         ahBottomNavigation.setDefaultBackgroundColor(Color.parseColor("#FEFEFE"));
@@ -144,13 +149,13 @@ MainActivity extends BaseActivity {
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
                 ahBottomNavigation.setCurrentItem(position);
                 ahBottomNavigation.restoreBottomNavigation(true);
+
             }
 
             @Override
@@ -179,4 +184,8 @@ MainActivity extends BaseActivity {
         JCVideoPlayer.releaseAllVideos();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

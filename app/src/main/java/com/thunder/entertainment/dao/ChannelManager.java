@@ -1,6 +1,7 @@
 package com.thunder.entertainment.dao;
 
 import com.thunder.entertainment.app.Constants;
+import com.thunder.entertainment.dao.table.ChannelModel;
 
 import java.util.List;
 

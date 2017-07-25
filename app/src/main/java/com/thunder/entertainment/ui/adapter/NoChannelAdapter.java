@@ -3,7 +3,7 @@ package com.thunder.entertainment.ui.adapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.thunder.entertainment.R;
-import com.thunder.entertainment.dao.ChannelModel;
+import com.thunder.entertainment.dao.table.ChannelModel;
 
 /**
  * Created by beibeizhu on 17/6/20.

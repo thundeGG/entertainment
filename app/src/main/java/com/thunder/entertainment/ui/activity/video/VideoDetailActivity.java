@@ -52,6 +52,7 @@ public class VideoDetailActivity extends BaseActivity<VideoDetailContract.Presen
 
     @Override
     protected void initView() {
+
         mPresenter = new VideoDetailPresenter(this);
         itemListBean = getIntent().getParcelableExtra("item");
         String url = itemListBean.getData().getPlayUrl();

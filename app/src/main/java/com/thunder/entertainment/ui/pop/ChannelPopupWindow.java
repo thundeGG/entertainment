@@ -16,7 +16,7 @@ import com.thunder.entertainment.R;
 import com.thunder.entertainment.app.Constants;
 import com.thunder.entertainment.common.event.MessageEvent;
 import com.thunder.entertainment.dao.ChannelManager;
-import com.thunder.entertainment.dao.ChannelModel;
+import com.thunder.entertainment.dao.table.ChannelModel;
 import com.thunder.entertainment.ui.adapter.MyChannelAdapter;
 import com.thunder.entertainment.ui.adapter.NoChannelAdapter;
 
