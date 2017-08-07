@@ -16,6 +16,8 @@ import com.thunder.entertainment.dao.table.WeiTopModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
 /**
  * Created by beibeizhu on 17/7/20.
  */
@@ -50,7 +52,8 @@ public class WeiTopAdapter extends BaseMultiItemQuickAdapter<WeiTopModel,BaseVie
                 nineGridView.setAdapter(new NineAdapter(mContext,imageInfos));
                 break;
             case ShapeConstant.TYPE_VIDEO:
-
+                JCVideoPlayerStandard mVideoPlayer = helper.getView(R.id.videoplayer);
+                mVideoPlayer.setUp(item.getVideo_url(), JCVideoPlayerStandard.CURRENT_STATE_NORMAL, "");
                 break;
         }
 

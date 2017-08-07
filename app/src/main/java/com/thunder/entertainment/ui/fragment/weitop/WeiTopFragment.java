@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.thunder.entertainment.R;
 import com.thunder.entertainment.common.base.BaseFragment;
@@ -16,12 +15,17 @@ import com.thunder.entertainment.constant.ShapeConstant;
 import com.thunder.entertainment.dao.ShapeManager;
 import com.thunder.entertainment.dao.table.WeiTopModel;
 import com.thunder.entertainment.ui.activity.weitop.ShapeActivity;
+import com.thunder.entertainment.ui.activity.weitop.ShortVideoRecordActivity;
 import com.thunder.entertainment.ui.adapter.WeiTopAdapter;
 import com.thunder.entertainment.ui.listener.ScrollHidingListener;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,7 +137,9 @@ public class WeiTopFragment extends BaseFragment {
                         .forResult(REQUEST_CODE_CHOOSE);
                 break;
             case R.id.ll_video:
-                Toast.makeText(getActivity(),"待开发",Toast.LENGTH_SHORT).show();
+                Intent videoIntent = new Intent(getActivity(), ShortVideoRecordActivity.class);
+                startActivity(videoIntent);
+//                Toast.makeText(getActivity(),"待开发",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -159,5 +165,22 @@ public class WeiTopFragment extends BaseFragment {
                     break;
             }
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onViewPageUpdate(WeiTopModel weiTopModel) {
+        initData();
     }
 }

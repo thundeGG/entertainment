@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:clipChildren="false">
+
+    <com.thunder.entertainment.ui.weight.SquareGLSurfaceView
+        android:id="@+id/preview"
+        android:layout_below="@id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/brightness_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/preview"
+        android:gravity="center_vertical"
+        android:padding="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="亮度调整"
+            android:textColor="#fff"/>
+
+        <SeekBar
+            android:id="@+id/adjust_brightness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipChildren="false">
+
+        <com.thunder.entertainment.ui.weight.FocusIndicator
+            android:id="@+id/focus_indicator"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="onClickBack"
+            android:text="@string/cancel"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:clickable="true"
+            android:onClick="onCaptureFrame"
+            android:src="@drawable/btn_capture_frame"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/switch_camera"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:onClick="onClickSwitchCamera"
+            android:src="@drawable/btn_switch_camera"/>
+
+        <ImageView
+            android:id="@+id/switch_flash"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:onClick="onClickSwitchFlash"
+            android:src="@drawable/btn_flash_selector"
+            android:visibility="visible"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/preview"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <com.thunder.entertainment.ui.weight.SectionProgressBar
+            android:id="@+id/record_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"/>
+
+        <LinearLayout
+            android:id="@+id/btns"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_delete"
+                android:clickable="true"
+                android:onClick="onClickDelete"/>
+
+            <ImageView
+                android:id="@+id/record"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:clickable="true"
+                android:src="@drawable/btn_record"/>
+
+            <ImageView
+                android:id="@+id/concat"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_concat"
+                android:clickable="true"
+                android:onClick="onClickConcat"/>
+
+        </LinearLayout>
+
+        <!--<com.kiwi.ui.widget.KwControlView-->
+        <!--android:id="@+id/kiwi_control_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:visibility="gone"/>-->
+
+    </LinearLayout>
+
+</RelativeLayout>
