@@ -18,6 +18,24 @@ vv# entertainment 一个采用了MVP＋Rxjava＋Retrofit的仿今日头条项目
 ![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E8%A7%86%E9%A2%91%E8%AF%A6%E6%83%85.jpg)
 ![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E5%85%A8%E9%83%A8%E8%AF%84%E8%AE%BA.jpg)
 
+### 第三方库
+
+- [ColorTrackTabLayout](https://github.com/yewei02538/ColorTrackTabLayout)
+- [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
+- [retrofit](https://github.com/square/retrofit)
+- [Glide](https://github.com/bumptech/glide)
+- [RxJava](https://github.com/ReactiveX/RxJava)
+- [ButterKnife](https://github.com/JakeWharton/butterknife)
+- [Gson](https://github.com/google/gson)
+- [JieCaoVideoPlayer](https://github.com/lipangit/JieCaoVideoPlayer)
+- [android-morphing-button](https://github.com/dmytrodanylyk/android-morphing-button)
+- [Matisse](https://github.com/zhihu/Matisse)
+- [EventBus](https://github.com/greenrobot/EventBus)
+- [AgentWeb](https://github.com/Justson/AgentWeb)
+- [greenDAO](https://github.com/greenrobot/greenDAO)
+- [leakcanary](https://github.com/square/leakcanary)
+- [ImmersionBar](https://github.com/gyf-dev/ImmersionBar)
+
 ### 下载体验
 [点我下载](https://fir.im/todayTop)
 
