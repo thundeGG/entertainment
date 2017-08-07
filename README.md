@@ -42,3 +42,4 @@ vv# entertainment 一个采用了MVP＋Rxjava＋Retrofit的仿今日头条项目
 ### 数据来自于
 - 新闻来自：[聚合数据](https://www.juhe.cn/)
 - 视频来自：[开眼视频](http://www.eyepetizer.net/)
+- 图片来自：[干货集中营](http://gank.io/api)
