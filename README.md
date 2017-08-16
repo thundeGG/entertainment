@@ -7,8 +7,11 @@ vv# entertainment 一个采用了MVP＋Rxjava＋Retrofit的仿今日头条项目
 
 ### 截图
 
+在线生成的gif，质量不高显得卡顿，真机和模拟器不卡
+
 ![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E6%96%B0%E9%97%BB%E6%A8%A1%E5%9D%97.gif)
 ![image](https://github.com/7hundeR/entertainment/blob/8f55a1e0af40d61c3a22341ac777954b7fc456e9/screens/%E8%A7%86%E9%A2%91%E6%A8%A1%E5%9D%97.gif)
+
 ![image](https://github.com/7hundeR/entertainment/blob/13eff5d92fa0277c7a7303acaf2b65cc121d89f4/screens/%E5%9B%BE%E7%89%87%E6%A8%A1%E5%9D%97.gif)
 ![image](https://github.com/7hundeR/entertainment/blob/13eff5d92fa0277c7a7303acaf2b65cc121d89f4/screens/%E5%BE%AE%E5%A4%B4%E6%9D%A1%E6%A8%A1%E5%9D%97.gif)
 
