@@ -6,12 +6,11 @@ vv# entertainment 一个采用了MVP＋Rxjava＋Retrofit的仿今日头条项目
 2.本项目仅作为学习交流使用，API数据内容所有权归原公司所有，请勿用于其他用途
 
 ### 截图
-不会录制gif图就截了几张图
 
-![image](https://github.com/7hundeR/entertainment/blob/master/screens/main.jpg)
-![image](https://github.com/7hundeR/entertainment/blob/master/screens/newsdetail.jpg)
-![image](https://github.com/7hundeR/entertainment/blob/master/screens/mychannel.jpg)
-![image](https://github.com/7hundeR/entertainment/blob/master/screens/updatechannel.jpg)
+![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E6%96%B0%E9%97%BB%E6%A8%A1%E5%9D%97.gif)
+![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E6%96%B0%E9%97%BB%E6%A8%A1%E5%9D%97.gif)
+![image](https://github.com/7hundeR/entertainment/blob/13eff5d92fa0277c7a7303acaf2b65cc121d89f4/screens/%E5%9B%BE%E7%89%87%E6%A8%A1%E5%9D%97.gif)
+![image](https://github.com/7hundeR/entertainment/blob/13eff5d92fa0277c7a7303acaf2b65cc121d89f4/screens/%E5%BE%AE%E5%A4%B4%E6%9D%A1%E6%A8%A1%E5%9D%97.gif)
 ![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E5%9B%BE%E7%89%87%E5%88%97%E8%A1%A8.jpg)
 ![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E5%9B%BE%E7%89%87%E8%AF%A6%E6%83%85.jpg)
 ![image](https://github.com/7hundeR/entertainment/blob/master/screens/%E8%A7%86%E9%A2%91%E5%88%97%E8%A1%A8.jpg)
