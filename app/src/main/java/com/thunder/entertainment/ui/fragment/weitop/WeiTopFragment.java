@@ -17,7 +17,6 @@ import com.thunder.entertainment.dao.table.WeiTopModel;
 import com.thunder.entertainment.ui.activity.weitop.ShapeActivity;
 import com.thunder.entertainment.ui.activity.weitop.ShortVideoRecordActivity;
 import com.thunder.entertainment.ui.adapter.WeiTopAdapter;
-import com.thunder.entertainment.ui.listener.ScrollHidingListener;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -92,17 +91,17 @@ public class WeiTopFragment extends BaseFragment {
             }
         });
 
-        recyclerView.addOnScrollListener(new ScrollHidingListener() {
-            @Override
-            protected void onHide() {
-                ll_title.setVisibility(View.GONE);
-            }
-
-            @Override
-            protected void onShow() {
-                ll_title.setVisibility(View.VISIBLE);
-            }
-        });
+//        recyclerView.addOnScrollListener(new ScrollHidingListener() {
+//            @Override
+//            protected void onHide() {
+//                ll_title.setVisibility(View.GONE);
+//            }
+//
+//            @Override
+//            protected void onShow() {
+//                ll_title.setVisibility(View.VISIBLE);
+//            }
+//        });
     }
 
     @Override
@@ -161,6 +160,12 @@ public class WeiTopFragment extends BaseFragment {
                     List<WeiTopModel> list = ShapeManager.getInstance().getList();
                     if (list != null) {
                         weiTopAdapter.setNewData(list);
+                    }
+                    break;
+                case REQUEST_CODE_PIC:
+                    List<WeiTopModel> weiTopModels = ShapeManager.getInstance().getList();
+                    if (weiTopModels != null) {
+                        weiTopAdapter.setNewData(weiTopModels);
                     }
                     break;
             }

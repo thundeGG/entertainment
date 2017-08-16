@@ -33,6 +33,8 @@ public abstract class ScrollHidingListener extends RecyclerView.OnScrollListener
         /// */
         int firstVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
 
+
+
         //滑到顶部
         if (firstVisibleItemPosition == 0) {
             if (!isShow) {
