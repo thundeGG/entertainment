@@ -14,4 +14,12 @@ public class Config {
     public static final String TRIM_FILE_PATH = VIDEO_STORAGE_DIR + "/trimmed.mp4";
     public static final String TRANSCODE_FILE_PATH = VIDEO_STORAGE_DIR + "/transcoded.mp4";
     public static final String CAPTURED_FRAME_FILE_PATH = VIDEO_STORAGE_DIR + "/captured_frame.jpg";
+
+    public static final int MODE_DEFAULT = 0;
+
+    public static final int MODE_SONIC = 1;
+
+    public static final int MODE_SONIC_WITH_OFFLINE_CACHE = 2;
+
+    private static final int PERMISSION_REQUEST_CODE_STORAGE = 1;
 }

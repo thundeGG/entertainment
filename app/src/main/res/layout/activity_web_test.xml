@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                               xmlns:app="http://schemas.android.com/apk/res-auto"
+                               xmlns:tools="http://schemas.android.com/tools"
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_above="@+id/tv_vas_team"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_default_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+            android:text="default_no_sonic" />
+
+        <Button
+            android:id="@+id/btn_sonic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+            android:text="sonic" />
+
+        <Button
+            android:id="@+id/btn_sonic_preload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+            android:text="sonic_preload"
+            />
+
+        <Button
+            android:id="@+id/btn_sonic_with_offline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+            android:text="sonic_offline"
+            />
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+            android:text="reset_clear"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_vas_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tencent_vas_team"
+        android:layout_margin="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+
+
+</android.widget.RelativeLayout>

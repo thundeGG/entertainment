@@ -47,5 +47,8 @@ public class NewsAdapter extends BaseMultiItemQuickAdapter<NewsModel.ResultBean.
                 ImageLoader.getInstance().displayImage(mContext,item.getThumbnail_pic_s03(), (ImageView) helper.getView(R.id.img_news_iamge3));
                 break;
         }
+
+//        SonicSessionConfig sessionConfig = new SonicSessionConfig.Builder().build();
+//        boolean preloadSuccess = SonicEngine.getInstance().preCreateSession(item.getUrl(), sessionConfig);
     }
 }

@@ -2,6 +2,7 @@ package com.thunder.entertainment.ui.activity.weitop;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.qiniu.pili.droid.shortvideo.PLUploadResultListener;
 import com.qiniu.pili.droid.shortvideo.PLUploadSetting;
 import com.thunder.entertainment.R;
 import com.thunder.entertainment.common.utils.Auth;
+import com.thunder.entertainment.common.utils.BitmapUtils;
 import com.thunder.entertainment.common.utils.Config;
 import com.thunder.entertainment.common.utils.StringUtils;
 import com.thunder.entertainment.common.utils.ToastUtils;
@@ -91,6 +93,9 @@ public class PlaybackActivity extends AppCompatActivity implements
         mVideoPlayer.heightRatio = 1;
         mVideoPlayer.backButton.setVisibility(View.GONE);
         mVideoPlayer.setAllControlsVisible(View.GONE, View.GONE, View.GONE, View.GONE, View.GONE, View.GONE, View.GONE);
+
+        Bitmap bitmap = BitmapUtils.getLocalVideoBitmap(mVideoPath);//获取第一帧图片
+        mVideoPlayer.thumbImageView.setImageBitmap(bitmap);
 
         mVideoPlayer.startButton.performClick();
     }

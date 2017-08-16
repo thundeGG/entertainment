@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.thunder.entertainment">
+          package="com.thunder.entertainment">
 
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     //视频录制
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
@@ -24,12 +24,12 @@
         <activity
             android:name=".ui.activity.SpalshActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/ThemeSplash"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeSplash">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN"/>
 
-            <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
@@ -41,27 +41,27 @@
         <activity
             android:name=".ui.activity.news.NewsWebViewActivity"
             android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"/>
 
         <activity
             android:name=".ui.activity.image.ImagePreviewActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".ui.activity.video.VideoDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".ui.activity.weitop.ShapeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".ui.activity.weitop.ShortVideoRecordActivity">
             <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
+            <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
             <!--</intent-filter>-->
         </activity>
 
@@ -71,12 +71,23 @@
         </activity>
         <activity android:name=".ui.activity.weitop.VideoEditActivity"/>
 
+        <activity android:name=".common.web.WebTestACtivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        </activity>
+
+        <activity android:name=".common.web.BrowserActivity"></activity>
+
+
         <meta-data
             android:name="design_width"
-            android:value="720" />
+            android:value="720"/>
         <meta-data
             android:name="design_height"
-            android:value="1280" />
+            android:value="1280"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

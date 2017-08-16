@@ -49,7 +49,6 @@ public abstract class BaseWebActivity extends BaseActivity {
     View mLineView;
     private AlertDialog mAlertDialog;
 
-
     @Override
     protected void initView() {
         mToolbar.setTitleTextColor(Color.WHITE);
@@ -66,7 +65,6 @@ public abstract class BaseWebActivity extends BaseActivity {
                 showDialog();
             }
         });
-
 
         long p = System.currentTimeMillis();
 

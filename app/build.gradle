@@ -115,4 +115,6 @@ dependencies {
     compile 'com.qiniu:qiniu-android-sdk:7.3.3'
     //循环按钮
     compile 'com.github.dmytrodanylyk:android-morphing-button:98a4986e56' // commit hash
+
+    compile 'com.tencent.sonic:sdk:1.0.0'
 }

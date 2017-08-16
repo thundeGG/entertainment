@@ -9,8 +9,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.tencent.sonic.sdk.SonicConfig;
+import com.tencent.sonic.sdk.SonicEngine;
 import com.thunder.entertainment.R;
 import com.thunder.entertainment.common.base.BaseFragment;
+import com.thunder.entertainment.common.web.BrowserActivity;
+import com.thunder.entertainment.common.web.SonicJavaScriptInterface;
+import com.thunder.entertainment.common.web.SonicRuntimeImpl;
 import com.thunder.entertainment.model.NewsModel;
 import com.thunder.entertainment.presenter.NewsMainPresenter;
 import com.thunder.entertainment.presenter.contract.NewsMainContract;
@@ -66,6 +71,11 @@ public class NewsFragment extends BaseFragment<NewsMainContract.Presenter> imple
         LinearLayoutManager layout = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layout);
         mRecyclerView.setAdapter(mAdapter);
+
+        // init sonic engine
+        if (!SonicEngine.isGetInstanceAllowed()) {
+            SonicEngine.createInstance(new SonicRuntimeImpl(getContext()), new SonicConfig.Builder().build());
+        }
     }
 
     @Override
@@ -91,6 +101,7 @@ public class NewsFragment extends BaseFragment<NewsMainContract.Presenter> imple
                 Intent intent = new Intent(getActivity(), NewsWebViewActivity.class);
                 intent.putExtra("url", item.getUrl());
                 startActivity(intent);
+//                startBrowserActivity(Config.MODE_SONIC,item.getUrl());
             }
         });
     }
@@ -131,6 +142,14 @@ public class NewsFragment extends BaseFragment<NewsMainContract.Presenter> imple
     @Override
     public void setPresenter(NewsMainContract.Presenter presenter) {
         mPresenter = presenter;
+    }
+
+    private void startBrowserActivity(int mode,String url) {
+        Intent intent = new Intent(getActivity(), BrowserActivity.class);
+        intent.putExtra(BrowserActivity.PARAM_URL, url);
+        intent.putExtra(BrowserActivity.PARAM_MODE, mode);
+        intent.putExtra(SonicJavaScriptInterface.PARAM_CLICK_TIME, System.currentTimeMillis());
+        startActivityForResult(intent, -1);
     }
 
 }
