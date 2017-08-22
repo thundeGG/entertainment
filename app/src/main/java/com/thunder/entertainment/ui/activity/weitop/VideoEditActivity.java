@@ -28,10 +28,16 @@ import com.qiniu.pili.droid.shortvideo.PLVideoEditSetting;
 import com.qiniu.pili.droid.shortvideo.PLVideoSaveListener;
 import com.qiniu.pili.droid.shortvideo.PLWatermarkSetting;
 import com.thunder.entertainment.R;
+import com.thunder.entertainment.common.event.MessageEvent;
 import com.thunder.entertainment.common.utils.Config;
 import com.thunder.entertainment.common.utils.GetPathFromUri;
 import com.thunder.entertainment.common.utils.ToastUtils;
+import com.thunder.entertainment.dao.table.WeiTopModel;
 import com.thunder.entertainment.ui.weight.AudioMixSettingDialog;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,6 +76,7 @@ public class VideoEditActivity extends Activity implements PLVideoSaveListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -213,6 +220,12 @@ public class VideoEditActivity extends Activity implements PLVideoSaveListener {
         setMixVolume();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
     public void onSaveEdit(View v) {
         mProcessingDialog.show();
         mShortVideoEditor.save();
@@ -315,5 +328,11 @@ public class VideoEditActivity extends Activity implements PLVideoSaveListener {
             mShortVideoEditor.setAudioMixFileRange(position, position + mMixDuration);
         }
     };
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onViewPageUpdate(MessageEvent<WeiTopModel> weiTopModel) {
+        Log.e(TAG, "onViewPageUpdate:  进入更新 ");
+        finish();
+    }
 
 }

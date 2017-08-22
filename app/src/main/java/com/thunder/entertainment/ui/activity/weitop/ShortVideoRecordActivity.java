@@ -30,11 +30,17 @@ import com.qiniu.pili.droid.shortvideo.PLShortVideoRecorder;
 import com.qiniu.pili.droid.shortvideo.PLVideoEncodeSetting;
 import com.qiniu.pili.droid.shortvideo.PLVideoFrame;
 import com.thunder.entertainment.R;
+import com.thunder.entertainment.common.event.MessageEvent;
 import com.thunder.entertainment.common.utils.Config;
 import com.thunder.entertainment.common.utils.RecordSettings;
 import com.thunder.entertainment.common.utils.ToastUtils;
+import com.thunder.entertainment.dao.table.WeiTopModel;
 import com.thunder.entertainment.ui.weight.FocusIndicator;
 import com.thunder.entertainment.ui.weight.SectionProgressBar;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -85,6 +91,9 @@ public class ShortVideoRecordActivity extends Activity implements PLRecordStateL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        EventBus.getDefault().register(this);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -283,6 +292,7 @@ public class ShortVideoRecordActivity extends Activity implements PLRecordStateL
 //            mKiwiTrackWrapper.onDestroy(this);
 //        }
         mShortVideoRecorder.destroy();
+        EventBus.getDefault().unregister(this);
     }
 
     public void onClickDelete(View v) {
@@ -548,5 +558,12 @@ public class ShortVideoRecordActivity extends Activity implements PLRecordStateL
     @Override
     public void onAutoFocusStop() {
         Log.i(TAG, "auto focus stop");
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onViewPageUpdate(MessageEvent<WeiTopModel> weiTopModel) {
+        Log.e(TAG, "onViewPageUpdate:  进入更新 ");
+        finish();
     }
 }

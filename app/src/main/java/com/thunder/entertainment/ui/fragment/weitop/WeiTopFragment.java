@@ -2,6 +2,9 @@ package com.thunder.entertainment.ui.fragment.weitop;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +14,9 @@ import android.widget.LinearLayout;
 
 import com.thunder.entertainment.R;
 import com.thunder.entertainment.common.base.BaseFragment;
+import com.thunder.entertainment.common.event.MessageEvent;
+import com.thunder.entertainment.common.utils.PermissionChecker;
+import com.thunder.entertainment.common.utils.ToastUtils;
 import com.thunder.entertainment.constant.ShapeConstant;
 import com.thunder.entertainment.dao.ShapeManager;
 import com.thunder.entertainment.dao.table.WeiTopModel;
@@ -33,6 +39,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
+import static com.tencent.sonic.sdk.SonicCacheInterceptor.TAG;
 
 /**
  * Created by beibeizhu on 17/7/19.
@@ -136,9 +143,14 @@ public class WeiTopFragment extends BaseFragment {
                         .forResult(REQUEST_CODE_CHOOSE);
                 break;
             case R.id.ll_video:
-                Intent videoIntent = new Intent(getActivity(), ShortVideoRecordActivity.class);
-                startActivity(videoIntent);
-//                Toast.makeText(getActivity(),"待开发",Toast.LENGTH_SHORT).show();
+                PermissionChecker checker = new PermissionChecker(getActivity());
+                boolean isPermissionOK = Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checker.checkPermission();
+                if (!isPermissionOK) {
+                    ToastUtils.s(getActivity(), "Some permissions is not approved !!!");
+                } else {
+                    Intent videoIntent = new Intent(getActivity(), ShortVideoRecordActivity.class);
+                    startActivity(videoIntent);
+                }
                 break;
         }
     }
@@ -173,19 +185,20 @@ public class WeiTopFragment extends BaseFragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onViewPageUpdate(WeiTopModel weiTopModel) {
+    public void onViewPageUpdate(MessageEvent<WeiTopModel> weiTopModel) {
+        Log.e(TAG, "onViewPageUpdate:  进入更新 ");
         initData();
     }
 }
